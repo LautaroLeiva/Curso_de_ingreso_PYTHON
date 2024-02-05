@@ -19,7 +19,7 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("UTN FRA")
+        self.title("UTN FRA1")
 
         self.btn_mostrar = customtkinter.CTkButton(
             master=self, text="Hola UTN", command=self.btn_mostrar_on_click)
