@@ -5,8 +5,8 @@ from tkinter.simpledialog import askstring as prompt
 import customtkinter
 
 '''
-nombre:
-apellido:
+nombre:Lautaro
+apellido:Leiva
 ---
 Ejercicio: entrada_salida_02
 ---
@@ -20,16 +20,15 @@ class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
         
-        self.title("UTN FRA")
+        self.title("Ventana")
        
         self.btn_mostrar = customtkinter.CTkButton(master=self, text="Mostrar", command=self.btn_mostrar_on_click)
         self.btn_mostrar.grid(row=2, pady=20, columnspan=2, sticky="nsew")
 
 
     def btn_mostrar_on_click(self):
-        pass
-        
-        
+        resultado_prompt = prompt(title= "Cuadro informativo",prompt= "Indicar con cuantas personas convive")
+        alert(title="Información aportada", message=resultado_prompt)
     
 if __name__ == "__main__":
     app = App()
