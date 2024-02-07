@@ -36,7 +36,7 @@ class App(customtkinter.CTk):
     def btn_mostrar_on_click(self):
         respuesta_hecha = self.txt_nombre.get()
         alert("Dato escrito", respuesta_hecha)
-        pass
+        
     
 if __name__ == "__main__":
     app = App()
