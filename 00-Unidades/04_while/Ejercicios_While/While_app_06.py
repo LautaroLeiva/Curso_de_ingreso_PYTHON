@@ -35,9 +35,16 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        suma = 0
+        for _ in range(5):
+            numero = prompt("Ingresar número", "Por favor, ingrese un número:")
+            if numero is None:
+                return  # Si el usuario cancela la entrada, salimos del bucle
+            suma += float(numero)
 
-    
+        promedio = suma / 5
+        self.txt_suma_acumulada.insert(customtkinter.END, str(suma))
+        self.txt_promedio.insert(customtkinter.END, str(promedio))
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

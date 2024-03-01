@@ -30,9 +30,22 @@ class App(customtkinter.CTk):
         
     
     def btn_validar_letra_on_click(self):
-        pass
+        while True:
+            letra = prompt("Ingresar letra", "Por favor, ingrese una letra (U, T o N):")
+            if letra is None:  # Si el usuario presiona Cancelar
+                break
             
-    
+            letra = letra.upper()  # Convertir la letra ingresada a mayúsculas
+            
+            if letra in ('U', 'T', 'N'):  # Verificar si la letra ingresada es 'U', 'T' o 'N'
+                alert("Resultado", f"La letra ingresada es: {letra}")
+                break
+            else:
+                continuar = question("Advertencia", "La letra ingresada no es válida. ¿Desea intentarlo de nuevo?")
+                if not continuar:
+                    break
+
+
 if __name__ == "__main__":
     app = App()
     app.geometry("300x300")

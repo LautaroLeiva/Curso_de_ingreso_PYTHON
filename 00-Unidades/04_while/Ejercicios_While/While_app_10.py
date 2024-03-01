@@ -37,7 +37,40 @@ class App(customtkinter.CTk):
 
 
     def btn_comenzar_ingreso_on_click(self):
-        pass
+        negativos = 0
+        positivos = 0
+        cantidad_positivos = 0
+        cantidad_negativos = 0
+        cantidad_ceros = 0
+
+        while True:
+            numero_str = alert("Ingresar número", "Ingrese un número (o presione Cancelar para finalizar):")
+            if numero_str is None:
+                break
+
+            try:
+                numero = float(numero_str)
+                if numero < 0:
+                    negativos += numero
+                    cantidad_negativos += 1
+                elif numero > 0:
+                    positivos += numero
+                    cantidad_positivos += 1
+                else:
+                    cantidad_ceros += 1
+            except ValueError:
+                alert("Error", "Por favor, ingrese un número válido.")
+
+        diferencia = cantidad_positivos - cantidad_negativos
+        mensaje = f"Resultados:\n"
+        mensaje += f"A. Suma acumulada de los negativos: {negativos}\n"
+        mensaje += f"B. Suma acumulada de los positivos: {positivos}\n"
+        mensaje += f"C. Cantidad de números positivos ingresados: {cantidad_positivos}\n"
+        mensaje += f"D. Cantidad de números negativos ingresados: {cantidad_negativos}\n"
+        mensaje += f"E. Cantidad de ceros: {cantidad_ceros}\n"
+        mensaje += f"F. Diferencia entre la cantidad de números positivos y negativos: {diferencia}\n"
+
+        alert("Resultados", mensaje)
 
     
 if __name__ == "__main__":

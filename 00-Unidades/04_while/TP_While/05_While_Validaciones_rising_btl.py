@@ -41,9 +41,8 @@ class App(customtkinter.CTk):
 
         self.label2 = customtkinter.CTkLabel(master=self, text="Estado")
         self.label2.grid(row=2, column=0, padx=20, pady=10)
-        self.combobox_tipo = customtkinter.CTkComboBox(
-            master=self, values=["Soltero/a", "Casado/a", "Divorciado/a", "Viudo/a"])
-        self.combobox_tipo.grid(row=2, column=1, padx=20, pady=10)
+        self.txt_tipo = customtkinter.CTkEntry(master=self)
+        self.txt_tipo.grid(row=2, column=1, padx=20, pady=10)
 
         self.label3 = customtkinter.CTkLabel(master=self, text="Legajo")
         self.label3.grid(row=3, column=0, padx=20, pady=10)
@@ -55,8 +54,37 @@ class App(customtkinter.CTk):
         self.btn_validar.grid(row=4, pady=20, columnspan=2, sticky="nsew")
 
     def btn_validar_on_click(self):
-        pass
+        apellido = self.txt_apellido.get()
+        edad = self.txt_edad.get()
+        estado = self.txt_tipo.get()
+        legajo = self.txt_legajo.get()
 
+        # Validación de edad
+        try:
+            edad = int(edad)
+            if not (18 <= edad <= 90):
+                alert("Error", "La edad debe estar entre 18 y 90 años.")
+                return
+        except ValueError:
+            alert("Error", "La edad debe ser un número entero.")
+            return
+
+        # Validación de estado civil
+        estados_validos = ["Soltero", "Casado", "Divorciado", "Viudo"]
+        if estado not in estados_validos:
+            alert("Error", "Estado civil no válido.")
+            return
+
+        # Validación de número de legajo
+        if not legajo.isdigit() or len(legajo) != 4 or legajo.startswith("0"):
+            alert("Error", "El número de legajo debe ser un número de 4 dígitos sin ceros a la izquierda.")
+            return
+
+        # Si todas las validaciones son exitosas, asignamos los datos a los cuadros de texto
+        self.txt_apellido.insert(customtkinter.END, apellido)
+        self.txt_edad.insert(customtkinter.END, str(edad))
+        self.txt_tipo.insert(customtkinter.END, estado)
+        self.txt_legajo.insert(customtkinter.END, legajo)
 
 if __name__ == "__main__":
     app = App()
